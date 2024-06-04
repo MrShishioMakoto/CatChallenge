@@ -1,0 +1,26 @@
+/* 
+  Localizable.strings
+  CatChallenge
+
+  Created by goncaloalmeida on 03/06/2024.
+  
+*/
+
+//MARK: - Navigation
+"navigation.title" = "Cats App";
+
+//MARK: - TabItem
+"tabItem.list" = "List";
+"tabItem.favourites"= "Favourites";
+
+//MARK: - Cat Details
+"details.breedName" = "Breed: ";
+"details.origin" = "Origin: ";
+"details.temperament" = "Temperament: ";
+"details.description" = "Description: ";
+
+// MARK: - Network Error
+"network.error.failed.to.decode" = "Failed to decode";
+"network.error.invalid.status.code" = "Request failed (Status Code)";
+"network.error.invalid.url" = "Invalid URL";
+"network.error.invalid.generic" = "ERROR";

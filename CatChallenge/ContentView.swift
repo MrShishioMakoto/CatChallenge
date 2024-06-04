@@ -8,14 +8,25 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject var viewModel = CatListViewModel()
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        TabView {
+            NavigationView {
+                CatListView(viewModel: viewModel)
+            }
+            .tabItem {
+                Label(LocalizableKeys.TabItem.list,
+                      systemImage: Constants.SystemImage.listBullet)
+            }
+            NavigationView {
+                FavouriteCatsList(viewModel: viewModel)
+            }
+            .tabItem {
+                Label(LocalizableKeys.TabItem.favourites, systemImage: Constants.SystemImage.starFill)
+            }
         }
-        .padding()
+        .accentColor(.black)
     }
 }
 

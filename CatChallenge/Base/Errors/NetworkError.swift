@@ -9,10 +9,23 @@ import Foundation
 
 enum NetworkError: Error {
     case generic
+    case invalidUrl
+    case failedToDecode
+    case invalidStatusCode
+    case custom(error: Error)
+    
     var errorDescription: String? {
         switch self {
         case .generic:
-            return "Error"
+            return LocalizableKeys.NetworkError.generic
+        case .invalidUrl:
+            return LocalizableKeys.NetworkError.url
+        case .failedToDecode:
+            return LocalizableKeys.NetworkError.decode
+        case .invalidStatusCode:
+            return LocalizableKeys.NetworkError.invalid
+        case .custom(let error):
+            return error.localizedDescription
         }
     }
 }

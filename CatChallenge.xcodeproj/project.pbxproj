@@ -18,6 +18,15 @@
 		C92A9CCD2C0DC85200375326 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92A9CCC2C0DC85200375326 /* NetworkService.swift */; };
 		C92A9CCF2C0DCB3200375326 /* Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92A9CCE2C0DCB3200375326 /* Endpoints.swift */; };
 		C92A9CD12C0DCE1300375326 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92A9CD02C0DCE1300375326 /* NetworkError.swift */; };
+		C92A9CD52C0DD08800375326 /* CatListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92A9CD42C0DD08800375326 /* CatListViewModel.swift */; };
+		C92A9CD72C0DD35A00375326 /* CatListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92A9CD62C0DD35A00375326 /* CatListView.swift */; };
+		C92A9CD92C0DD5F200375326 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92A9CD82C0DD5F200375326 /* Constants.swift */; };
+		C92A9CDB2C0DD6A700375326 /* CatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92A9CDA2C0DD6A700375326 /* CatCell.swift */; };
+		C92A9CDD2C0DD73700375326 /* CatDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92A9CDC2C0DD73700375326 /* CatDetailsView.swift */; };
+		C92A9CDF2C0E01FB00375326 /* LocalizableKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92A9CDE2C0E01FB00375326 /* LocalizableKeys.swift */; };
+		C92A9CE12C0E021E00375326 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92A9CE02C0E021E00375326 /* String+Extension.swift */; };
+		C92A9CE42C0E036800375326 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C92A9CE62C0E036800375326 /* Localizable.strings */; };
+		C94DD2B52C0F1FCD00CDABC0 /* FavouriteCatsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C94DD2B42C0F1FCD00CDABC0 /* FavouriteCatsList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +61,15 @@
 		C92A9CCC2C0DC85200375326 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		C92A9CCE2C0DCB3200375326 /* Endpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoints.swift; sourceTree = "<group>"; };
 		C92A9CD02C0DCE1300375326 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		C92A9CD42C0DD08800375326 /* CatListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatListViewModel.swift; sourceTree = "<group>"; };
+		C92A9CD62C0DD35A00375326 /* CatListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatListView.swift; sourceTree = "<group>"; };
+		C92A9CD82C0DD5F200375326 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		C92A9CDA2C0DD6A700375326 /* CatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatCell.swift; sourceTree = "<group>"; };
+		C92A9CDC2C0DD73700375326 /* CatDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatDetailsView.swift; sourceTree = "<group>"; };
+		C92A9CDE2C0E01FB00375326 /* LocalizableKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizableKeys.swift; sourceTree = "<group>"; };
+		C92A9CE02C0E021E00375326 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		C92A9CE52C0E036800375326 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		C94DD2B42C0F1FCD00CDABC0 /* FavouriteCatsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteCatsList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,22 +162,15 @@
 				C90A1EE22C0DBFAA0053C134 /* Localizables */,
 				C90A1EE02C0DBF8B0053C134 /* Constants */,
 				C90A1EE12C0DBFA20053C134 /* Extensions */,
-				C90A1EDF2C0DBF7C0053C134 /* LoadingView */,
 				C90A1EE32C0DBFB20053C134 /* Errors */,
 			);
 			path = Base;
 			sourceTree = "<group>";
 		};
-		C90A1EDF2C0DBF7C0053C134 /* LoadingView */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = LoadingView;
-			sourceTree = "<group>";
-		};
 		C90A1EE02C0DBF8B0053C134 /* Constants */ = {
 			isa = PBXGroup;
 			children = (
+				C92A9CD82C0DD5F200375326 /* Constants.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -167,6 +178,7 @@
 		C90A1EE12C0DBFA20053C134 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				C92A9CE02C0E021E00375326 /* String+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -174,6 +186,8 @@
 		C90A1EE22C0DBFAA0053C134 /* Localizables */ = {
 			isa = PBXGroup;
 			children = (
+				C92A9CDE2C0E01FB00375326 /* LocalizableKeys.swift */,
+				C92A9CE62C0E036800375326 /* Localizable.strings */,
 			);
 			path = Localizables;
 			sourceTree = "<group>";
@@ -189,9 +203,9 @@
 		C90A1EE42C0DBFD10053C134 /* Feature */ = {
 			isa = PBXGroup;
 			children = (
-				C90A1EE52C0DC0120053C134 /* CatList */,
-				C90A1EE62C0DC01A0053C134 /* CatDetails */,
-				C92A9CCB2C0DC3F100375326 /* FavouriteCats */,
+				C92A9CC52C0DC27E00375326 /* Model */,
+				C92A9CC42C0DC27700375326 /* ViewModel */,
+				C94DD2B32C0F1F3100CDABC0 /* Screens */,
 			);
 			path = Feature;
 			sourceTree = "<group>";
@@ -199,9 +213,8 @@
 		C90A1EE52C0DC0120053C134 /* CatList */ = {
 			isa = PBXGroup;
 			children = (
-				C92A9CC52C0DC27E00375326 /* Model */,
-				C92A9CC42C0DC27700375326 /* ViewModel */,
-				C92A9CC32C0DC26B00375326 /* View */,
+				C92A9CD62C0DD35A00375326 /* CatListView.swift */,
+				C92A9CC32C0DC26B00375326 /* Cell */,
 			);
 			path = CatList;
 			sourceTree = "<group>";
@@ -209,9 +222,7 @@
 		C90A1EE62C0DC01A0053C134 /* CatDetails */ = {
 			isa = PBXGroup;
 			children = (
-				C92A9CC82C0DC29100375326 /* Model */,
-				C92A9CC72C0DC28B00375326 /* ViewModel */,
-				C92A9CC62C0DC28500375326 /* View */,
+				C92A9CDC2C0DD73700375326 /* CatDetailsView.swift */,
 			);
 			path = CatDetails;
 			sourceTree = "<group>";
@@ -225,16 +236,18 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
-		C92A9CC32C0DC26B00375326 /* View */ = {
+		C92A9CC32C0DC26B00375326 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				C92A9CDA2C0DD6A700375326 /* CatCell.swift */,
 			);
-			path = View;
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		C92A9CC42C0DC27700375326 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				C92A9CD42C0DD08800375326 /* CatListViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -247,32 +260,22 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		C92A9CC62C0DC28500375326 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		C92A9CC72C0DC28B00375326 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		C92A9CC82C0DC29100375326 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		C92A9CCB2C0DC3F100375326 /* FavouriteCats */ = {
 			isa = PBXGroup;
 			children = (
+				C94DD2B42C0F1FCD00CDABC0 /* FavouriteCatsList.swift */,
 			);
 			path = FavouriteCats;
+			sourceTree = "<group>";
+		};
+		C94DD2B32C0F1F3100CDABC0 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				C90A1EE52C0DC0120053C134 /* CatList */,
+				C90A1EE62C0DC01A0053C134 /* CatDetails */,
+				C92A9CCB2C0DC3F100375326 /* FavouriteCats */,
+			);
+			name = Screens;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -380,6 +383,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C90A1EBB2C0DBE420053C134 /* Preview Assets.xcassets in Resources */,
+				C92A9CE42C0E036800375326 /* Localizable.strings in Resources */,
 				C90A1EB82C0DBE420053C134 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -405,12 +409,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C94DD2B52C0F1FCD00CDABC0 /* FavouriteCatsList.swift in Sources */,
 				C90A1EB62C0DBE400053C134 /* ContentView.swift in Sources */,
+				C92A9CD52C0DD08800375326 /* CatListViewModel.swift in Sources */,
+				C92A9CDD2C0DD73700375326 /* CatDetailsView.swift in Sources */,
 				C90A1EB42C0DBE400053C134 /* CatChallengeApp.swift in Sources */,
+				C92A9CD72C0DD35A00375326 /* CatListView.swift in Sources */,
 				C92A9CCD2C0DC85200375326 /* NetworkService.swift in Sources */,
+				C92A9CE12C0E021E00375326 /* String+Extension.swift in Sources */,
+				C92A9CDF2C0E01FB00375326 /* LocalizableKeys.swift in Sources */,
 				C92A9CD12C0DCE1300375326 /* NetworkError.swift in Sources */,
+				C92A9CDB2C0DD6A700375326 /* CatCell.swift in Sources */,
 				C92A9CCA2C0DC2F000375326 /* Cat.swift in Sources */,
 				C92A9CCF2C0DCB3200375326 /* Endpoints.swift in Sources */,
+				C92A9CD92C0DD5F200375326 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -445,6 +457,17 @@
 			targetProxy = C90A1ECB2C0DBE430053C134 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		C92A9CE62C0E036800375326 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C92A9CE52C0E036800375326 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		C90A1ED22C0DBE430053C134 /* Debug */ = {
