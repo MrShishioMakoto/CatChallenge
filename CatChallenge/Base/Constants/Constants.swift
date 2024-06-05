@@ -14,4 +14,7 @@ enum Constants {
         static let starFill = "star.fill"
         static let listBullet = "list.bullet"
     }
+    enum Entity {
+        static let favouriteCats = "FavouriteCatsEntity"
+    }
 }

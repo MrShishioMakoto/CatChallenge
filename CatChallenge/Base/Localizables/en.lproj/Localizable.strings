@@ -7,11 +7,15 @@
 */
 
 //MARK: - Navigation
-"navigation.title" = "Cats App";
+"navigation.cat.list.title" = "Cat List";
+"navigation.fav.cat.list.title" = "Favourite Cats";
 
 //MARK: - TabItem
 "tabItem.list" = "List";
 "tabItem.favourites"= "Favourites";
+
+// MARK: - Search Bar
+"search.bar.placeholder" = "Search Cats";
 
 //MARK: - Cat Details
 "details.breedName" = "Breed: ";

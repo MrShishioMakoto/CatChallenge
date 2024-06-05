@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject var viewModel = CatListViewModel()
+    @StateObject var viewModel = CatsViewModel()
     
     var body: some View {
         TabView {

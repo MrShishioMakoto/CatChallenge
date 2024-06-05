@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Cat: Codable, Identifiable {
+struct Cat: Codable, Equatable, Identifiable {
     let id: String
     let name: String
     let origin: String
@@ -15,20 +15,57 @@ struct Cat: Codable, Identifiable {
     let description: String
     let lifeSpan: String
     let image: Image?
-    var isFavourite: Bool = false
     
     enum CodingKeys: String, CodingKey {
         case id, name, origin, temperament, description, image
         case lifeSpan = "life_span"
     }
     
-    struct Image: Codable {
+    struct Image: Codable, Equatable {
         let id: String?
         let url: String?
         
         enum CodingKeys: String, CodingKey {
             case id, url
         }
+    }
+    
+    static func == (lhs: Cat, rhs: Cat) -> Bool {
+        lhs.id == rhs.id &&
+        lhs.name == rhs.name &&
+        lhs.origin == rhs.origin &&
+        lhs.temperament == rhs.temperament &&
+        lhs.description == rhs.description &&
+        lhs.lifeSpan == rhs.lifeSpan &&
+        lhs.image == rhs.image
+    }
+    
+    init(
+        id: String,
+        name: String,
+        origin: String,
+        temperament: String,
+        description: String,
+        lifeSpan: String,
+        image: Image
+    ) {
+        self.id = id
+        self.name = name
+        self.origin = origin
+        self.temperament = temperament
+        self.description = description
+        self.lifeSpan = lifeSpan
+        self.image = image
+    }
+    
+    init(favCat: FavouriteCatsEntity) {
+        id = favCat.id ?? ""
+        name = favCat.name ?? ""
+        origin = favCat.origin ?? ""
+        temperament = favCat.temperament ?? ""
+        description = favCat.desc ?? ""
+        lifeSpan = favCat.lifeSpan ?? ""
+        image = Image(id: favCat.id, url: favCat.imageURL ?? "")
     }
 }
 

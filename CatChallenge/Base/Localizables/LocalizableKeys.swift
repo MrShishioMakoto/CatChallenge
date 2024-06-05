@@ -9,7 +9,8 @@ import Foundation
 
 enum LocalizableKeys {
     enum Navigation {
-        static let navigationTitle = "navigation.title".localizableString()
+        static let navCatListTitle = "navigation.cat.list.title".localizableString()
+        static let navFavCatListTitle = "navigation.fav.cat.list.title".localizableString()
     }
     enum TabItem {
         static let list = "tabItem.list".localizableString()
@@ -28,6 +29,6 @@ enum LocalizableKeys {
         static let invalid = "network.error.invalid.status.code".localizableString()
     }
     enum SearchBar {
-        static let placeholder = "Search Cats".localizableString()
+        static let placeholder = "search.bar.placeholder".localizableString()
     }
 }

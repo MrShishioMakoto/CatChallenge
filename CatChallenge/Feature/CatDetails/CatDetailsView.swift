@@ -8,64 +8,37 @@
 import SwiftUI
 
 struct CatDetailsView: View {
+    @ObservedObject var viewModel: CatsViewModel
     let cat: Cat
     
     var body: some View {
         VStack {
             HStack {
-                Group {
-                    Text(LocalizableKeys.CatDetails.breed)
-                        .font(.system(size: 24))
-                        .fontWeight(.bold)
-                    + Text(cat.name)
-                        .font(.system(size: 24))
-                } 
+                Text(String.customAttributedString(textOne: LocalizableKeys.CatDetails.breed, textTwo: cat.name, size: 24))
+                
                 Spacer()
-                if cat.isFavourite {
-                    Image(systemName: Constants.SystemImage.starFill)
-                        .resizable()
-                        .frame(width: 24, height: 24)
-                } else {
-                    Image(systemName: Constants.SystemImage.star)
-                        .resizable()
-                        .frame(width: 24, height: 24)
+                
+                FavouriteButton(isFavourite: viewModel.isFavourite(cat: cat)) {
+                    viewModel.updateFavourite(cat: cat)
                 }
+                .frame(width: 24, height: 24)
+                .foregroundColor(.black)
             }
             .padding()
             
-            if let imageURL = cat.image?.url,
-               let url = URL(string: imageURL) {
-                AsyncImage(url: url) { image in
-                    image.resizable()
-                } placeholder: {
-                    Color.gray
-                }
+            CatImage(imageUrl: cat.image?.url)
                 .frame(width: 200, height: 200)
                 .padding()
-            } else {
-                Image(systemName: Constants.SystemImage.photo)
-                    .resizable()
-                    .frame(width: 200, height: 200)
-                    .foregroundColor(.gray)
-            }
-            Group {
-                Text(LocalizableKeys.CatDetails.origin)
-                    .fontWeight(.bold)
-                + Text(cat.origin)
-            }
-            .padding(2)
-            Group {
-                Text(LocalizableKeys.CatDetails.temperament)
-                    .fontWeight(.bold)
-                + Text(cat.temperament)
-            }
-            .padding(2)
-            Group {
-                Text(LocalizableKeys.CatDetails.description)
-                    .fontWeight(.bold)
-                + Text(cat.description)
-            }
-            .padding(2)
+            
+            Text(String.customAttributedString(textOne: LocalizableKeys.CatDetails.origin, textTwo: cat.origin))
+                .padding(2)
+            
+            Text(String.customAttributedString(textOne: LocalizableKeys.CatDetails.temperament, textTwo: cat.temperament))
+                .padding(2)
+            
+            Text(String.customAttributedString(textOne: LocalizableKeys.CatDetails.description, textTwo: cat.description))
+                .padding(2)
+            
             Spacer()
         }
         .padding()
@@ -74,6 +47,6 @@ struct CatDetailsView: View {
 
 struct CatDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        CatDetailsView(cat: Cat.dummyData)
+        CatDetailsView(viewModel: CatsViewModel(), cat: Cat.dummyData)
     }
 }

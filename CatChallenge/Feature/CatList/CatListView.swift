@@ -8,35 +8,40 @@
 import SwiftUI
 
 struct CatListView: View {
-    @ObservedObject var viewModel: CatListViewModel
+    @ObservedObject var viewModel: CatsViewModel
     let columns = Array(repeating: GridItem(.flexible()), count: 3)
     
     var body: some View {
-            ScrollView {
-                LazyVGrid(columns: columns) {
-                    ForEach(viewModel.filteredCats) { cat in
-                        NavigationLink(destination: CatDetailsView(cat: cat)) {
-                            CatCell(cat: cat)
-                            .onAppear {
-                                if cat.id == viewModel.catList.last?.id {
-                                    viewModel.fetchSomeCats()
-                                }
+        ScrollView {
+            LazyVGrid(columns: columns) {
+                ForEach(viewModel.filteredCats) { cat in
+                    NavigationLink(destination: CatDetailsView(viewModel: viewModel, cat: cat)) {
+                        CatView(viewModel: viewModel, cat: cat)
+                        .onAppear {
+                            if cat.id == viewModel.catList.last?.id {
+                                viewModel.fetchSomeCats()
                             }
                         }
                     }
                 }
             }
-            .onAppear {
+        }
+        .onAppear {
+            viewModel.fetchSomeCats()
+        }
+        .navigationTitle(LocalizableKeys.Navigation.navCatListTitle)
+        .searchable(text: $viewModel.searchText, prompt: LocalizableKeys.SearchBar.placeholder)
+        .alert(isPresented: $viewModel.hasError, error: viewModel.error) {
+            Button("Retry") {
                 viewModel.fetchSomeCats()
             }
-            .navigationTitle(LocalizableKeys.Navigation.navigationTitle)
-            .searchable(text: $viewModel.searchText, prompt: LocalizableKeys.SearchBar.placeholder)
+        }
     }
 }
 
 
 struct CatListView_Previews: PreviewProvider {
     static var previews: some View {
-        CatListView(viewModel: CatListViewModel())
+        CatListView(viewModel: CatsViewModel())
     }
 }
