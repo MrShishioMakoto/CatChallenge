@@ -28,3 +28,6 @@
 "network.error.invalid.status.code" = "Request failed (Status Code)";
 "network.error.invalid.url" = "Invalid URL";
 "network.error.invalid.generic" = "ERROR";
+
+//MARK: - Alert
+"alert.button" = "Retry: Fetch Some Cats";

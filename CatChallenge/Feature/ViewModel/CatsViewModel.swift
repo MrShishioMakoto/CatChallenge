@@ -52,9 +52,9 @@ class CatsViewModel: ObservableObject {
         let request = NSFetchRequest<FavouriteCatsEntity>(entityName: Constants.Entity.favouriteCats)
         do {
             favouriteCats = try dataPersistenceController.container.viewContext.fetch(request)
-        } catch let error {
-            //TODO ERRORS
-            print("Error fetching. \(error)")
+        } catch let err {
+            self.hasError = true
+            self.error = CustomError.custom(error: err)
         }
     }
     

@@ -31,4 +31,7 @@ enum LocalizableKeys {
     enum SearchBar {
         static let placeholder = "search.bar.placeholder".localizableString()
     }
+    enum Alert {
+        static let button = "alert.button".localizableString()
+    }
 }

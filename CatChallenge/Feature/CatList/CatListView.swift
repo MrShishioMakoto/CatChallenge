@@ -32,7 +32,7 @@ struct CatListView: View {
         .navigationTitle(LocalizableKeys.Navigation.navCatListTitle)
         .searchable(text: $viewModel.searchText, prompt: LocalizableKeys.SearchBar.placeholder)
         .alert(isPresented: $viewModel.hasError, error: viewModel.error) {
-            Button("Retry") {
+            Button(LocalizableKeys.Alert.button) {
                 viewModel.fetchSomeCats()
             }
         }
