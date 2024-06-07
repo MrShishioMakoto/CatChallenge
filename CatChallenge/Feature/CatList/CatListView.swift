@@ -18,17 +18,26 @@ struct CatListView: View {
                     NavigationLink(destination: CatDetailsView(viewModel: viewModel, cat: cat)) {
                         CatView(viewModel: viewModel, cat: cat)
                             .onAppear {
-                                viewModel.load(currentCat: cat)
+                                Task {
+                                    try await viewModel.load(currentCat: cat)
+                                }
                             }
                     }
                 }
+            }
+        }
+        .onAppear {
+            Task {
+                try await viewModel.fetchSomeCats()
             }
         }
         .navigationTitle(LocalizableKeys.Navigation.navCatListTitle)
         .searchable(text: $viewModel.searchText, prompt: LocalizableKeys.SearchBar.placeholder)
         .alert(isPresented: $viewModel.hasError, error: viewModel.error) {
             Button(LocalizableKeys.Alert.button) {
-                viewModel.fetchSomeCats()
+                Task {
+                    try await viewModel.fetchSomeCats()
+                }
             }
         }
     }

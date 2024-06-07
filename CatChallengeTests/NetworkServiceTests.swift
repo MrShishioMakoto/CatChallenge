@@ -14,26 +14,9 @@ final class NetworkServiceTests: XCTestCase {
     var networkService: NetworkService!
     var urlSessionMock: MockUrlProtocol!
     
-    override func setUp() {
-        super.setUp()
-        
-        let config = URLSessionConfiguration.ephemeral
-        config.protocolClasses = [MockUrlProtocol.self]
-        let session = URLSession(configuration: config)
-        
-        networkService = NetworkService(urlSession: session)
-    }
-    
-    override func tearDown() {
-        networkService = nil
-        MockUrlProtocol.testData = nil
-        MockUrlProtocol.response = nil
-        MockUrlProtocol.error = nil
-        super.tearDown()
-    }
-    
     func test_networkService_success() async throws {
         //Arrange
+        makeSUT()
         networkService = NetworkService(urlString: Endpoints.catBreedsURL)
         var cats: [Cat] = []
         
@@ -50,6 +33,7 @@ final class NetworkServiceTests: XCTestCase {
     
     func test_networkService_invalidURL_error() async throws {
         //Arrange
+        makeSUT()
         networkService = NetworkService(urlString: "invalid_url")
         
         //Act
@@ -63,6 +47,7 @@ final class NetworkServiceTests: XCTestCase {
     
     func test_networkService_invalidStatusCode_error() async throws {
         //Arrange
+        makeSUT()
         MockUrlProtocol.testData = Data()
         MockUrlProtocol.response = HTTPURLResponse(url: URL(string: Endpoints.catBreedsURL)!, statusCode: 404, httpVersion: nil, headerFields: nil)
         
@@ -77,6 +62,7 @@ final class NetworkServiceTests: XCTestCase {
     
     func test_networkService_failedToDecode_error() async {
         //Arrange
+        makeSUT()
         MockUrlProtocol.testData = InvalidJson.data(using: .utf8)!
         MockUrlProtocol.response = HTTPURLResponse(url: URL(string: Endpoints.catBreedsURL)!, statusCode: 200, httpVersion: nil, headerFields: nil)
         
@@ -87,5 +73,13 @@ final class NetworkServiceTests: XCTestCase {
             //Assert
             XCTAssertEqual(error as? CustomError, CustomError.failedToDecode)
         }
+    }
+    
+    func makeSUT() {
+        let config = URLSessionConfiguration.ephemeral
+        config.protocolClasses = [MockUrlProtocol.self]
+        let session = URLSession(configuration: config)
+        
+        networkService = NetworkService(urlSession: session)
     }
 }

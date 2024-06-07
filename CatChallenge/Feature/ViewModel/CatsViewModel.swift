@@ -30,20 +30,18 @@ class CatsViewModel: ObservableObject {
     
     init(service: NetworkServiceProtocol = NetworkService()) {
         self.service = service
-        fetchSomeCats()
         fetchFavouriteCats()
     }
     
     //MARK: - API Call
-    func load(currentCat cat: Cat) {
+    func load(currentCat cat: Cat) async throws {
         if cat.id == catList.last?.id {
             page += 1
-            self.fetchSomeCats()
+            try await self.fetchSomeCats()
         }
     }
     
-    func fetchSomeCats() {
-        Task {
+    func fetchSomeCats() async throws {
             do {
                 let cats = try await service.fetchCats(page: page, limit: limit)
                 self.catList.append(contentsOf: cats)
@@ -51,7 +49,6 @@ class CatsViewModel: ObservableObject {
                 self.hasError = true
                 self.error = err as? CustomError
             }
-        }
     }
     
     //MARK: - CoreData

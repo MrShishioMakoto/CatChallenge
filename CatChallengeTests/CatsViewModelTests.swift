@@ -12,28 +12,17 @@ import Foundation
 @MainActor
 final class CatsViewModelTests: XCTestCase {
     
+    var mockNetworkService: MockNetworkService = MockNetworkService()
     var viewModel: CatsViewModel!
-    var mockNetworkService: MockNetworkService!
-    
-    override func setUp() {
-        super.setUp()
-        mockNetworkService = MockNetworkService()
-        viewModel = CatsViewModel(service: mockNetworkService)
-    }
-    
-    override func tearDown() {
-        viewModel = nil
-        mockNetworkService = nil
-        super.tearDown()
-    }
     
     func test_fetchSomeCats_success() async {
         // Arrange
         let catsMock = [Cat.Mock.makeMock(), Cat.Mock.makeMock(), Cat.Mock.makeMock()]
+        viewModel = CatsViewModel(service: mockNetworkService)
         mockNetworkService.fetchCatsResult = .success(catsMock)
         
         // Act
-        viewModel.fetchSomeCats()
+        try! await viewModel.fetchSomeCats()
         
         // Assert
         XCTAssertEqual(viewModel.catList, catsMock)
@@ -41,12 +30,47 @@ final class CatsViewModelTests: XCTestCase {
         XCTAssertNil(viewModel.error)
     }
     
+    func test_fetchSomeCats_appendItems_success() async {
+        // Arrange
+        let firstPageCats = [Cat.Mock.makeMock(id: "1", name: "Cat 1"), Cat.Mock.makeMock(id: "2", name: "Cat 2")]
+        let secondPageCats = [Cat.Mock.makeMock(id: "3", name: "Cat 3"), Cat.Mock.makeMock(id: "4", name: "Cat 4")]
+        viewModel = CatsViewModel(service: mockNetworkService)
+
+        // Act
+        mockNetworkService.fetchCatsResult = .success(firstPageCats)
+        try! await viewModel.fetchSomeCats()
+        XCTAssertEqual(viewModel.catList.count, firstPageCats.count)
+
+        mockNetworkService.fetchCatsResult = .success(secondPageCats)
+        try! await viewModel.fetchSomeCats()
+        XCTAssertEqual(viewModel.catList.count, 4)
+    }
+    
+    func test_fetchSomeCats_pagination_success() async {
+        // Arrange
+        let firstPageCats = [Cat.Mock.makeMock(id: "1", name: "Cat 1"), Cat.Mock.makeMock(id: "2", name: "Cat 2")]
+        let secondPageCats = [Cat.Mock.makeMock(id: "3", name: "Cat 3"), Cat.Mock.makeMock(id: "4", name: "Cat 4")]
+        viewModel = CatsViewModel(service: mockNetworkService)
+
+        // Act
+        mockNetworkService.fetchCatsResult = .success(firstPageCats)
+        try! await viewModel.fetchSomeCats()
+        XCTAssertEqual(viewModel.catList.count, firstPageCats.count)
+
+        mockNetworkService.fetchCatsResult = .success(secondPageCats)
+        try! await viewModel.load(currentCat: firstPageCats.last!)
+
+        XCTAssertEqual(viewModel.catList.count, 4)
+        XCTAssertEqual(viewModel.catList.last, secondPageCats.last)
+    }
+    
     func test_fetchSomeCats_failure() async {
         // Arrange
+        viewModel = CatsViewModel(service: mockNetworkService)
         mockNetworkService.fetchCatsResult = .failure(.failedToDecode)
         
         // Act
-        viewModel.fetchSomeCats()
+        try! await viewModel.fetchSomeCats()
         
         // Assert
         XCTAssertTrue(viewModel.catList.isEmpty)
@@ -75,6 +99,7 @@ final class CatsViewModelTests: XCTestCase {
             lifeSpan: "10-12 years",
             image: nil
         )
+        viewModel = CatsViewModel(service: mockNetworkService)
         
         // Act
         viewModel.catList = [cat1, cat2]
