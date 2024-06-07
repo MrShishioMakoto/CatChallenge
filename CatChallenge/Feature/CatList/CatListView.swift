@@ -17,17 +17,12 @@ struct CatListView: View {
                 ForEach(viewModel.filteredCats) { cat in
                     NavigationLink(destination: CatDetailsView(viewModel: viewModel, cat: cat)) {
                         CatView(viewModel: viewModel, cat: cat)
-                        .onAppear {
-                            if cat.id == viewModel.catList.last?.id {
-                                viewModel.fetchSomeCats()
+                            .onAppear {
+                                viewModel.load(currentCat: cat)
                             }
-                        }
                     }
                 }
             }
-        }
-        .onAppear {
-            viewModel.fetchSomeCats()
         }
         .navigationTitle(LocalizableKeys.Navigation.navCatListTitle)
         .searchable(text: $viewModel.searchText, prompt: LocalizableKeys.SearchBar.placeholder)

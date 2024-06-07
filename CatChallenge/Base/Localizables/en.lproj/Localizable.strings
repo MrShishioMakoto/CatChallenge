@@ -1,13 +1,13 @@
 /* 
-  Localizable.strings
-  CatChallenge
-
-  Created by goncaloalmeida on 03/06/2024.
-  
-*/
+ Localizable.strings
+ CatChallenge
+ 
+ Created by goncaloalmeida on 03/06/2024.
+ 
+ */
 
 //MARK: - Navigation
-"navigation.cat.list.title" = "Cat Listt";
+"navigation.cat.list.title" = "Cat List";
 "navigation.fav.cat.list.title" = "Favourite Cats";
 
 //MARK: - TabItem

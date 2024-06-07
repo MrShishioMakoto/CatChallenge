@@ -26,8 +26,10 @@ struct CatImage: View {
             Rectangle()
                 .overlay(
                     Image(systemName: Constants.SystemImage.photo)
+                        .resizable()
                         .foregroundColor(.gray)
                 )
+                .foregroundColor(.clear)
         }
     }
 }

@@ -8,9 +8,18 @@
 import Foundation
 @testable import CatChallenge
 
-class MockNetworkService: NetworkServiceProtocol, Mockable {
+class MockNetworkService: NetworkServiceProtocol {
+    var fetchCatsResult: Result<[Cat], CustomError>?
     
     func fetchCats(page: Int, limit: Int) async throws -> [Cat] {
-        return loadJSON(filename: "JSONMockCats", type: Cat.self)
+        if let result = fetchCatsResult {
+            switch result {
+            case .success(let cats):
+                return cats
+            case .failure(let error):
+                throw error
+            }
+        }
+        return []
     }
 }

@@ -28,9 +28,14 @@ class NetworkService: NetworkServiceProtocol {
         url = url.appending(queryItems: [URLQueryItem(name: Endpoints.Pagination.nameLimit, value: "\(limit)")])
         url = url.appending(queryItems: [URLQueryItem(name: Endpoints.Pagination.namePage, value: "\(page)")])
         url = url.appending(queryItems: [URLQueryItem(name: Endpoints.APIKey.name, value: Endpoints.APIKey.value)])
+        guard url.scheme != nil && url.host != nil else { throw CustomError.invalidUrl }
         let (data, response) = try await urlSession.data(from: url)
         guard (response as? HTTPURLResponse)?.statusCode == 200 else { throw CustomError.invalidStatusCode }
-        guard let catBreeds = try JSONDecoder().decode([Cat]?.self, from: data) else { throw CustomError.failedToDecode }
-        return catBreeds
+        do {
+            let catBreeds = try JSONDecoder().decode([Cat].self, from: data)
+            return catBreeds
+        } catch {
+            throw CustomError.failedToDecode
+        }
     }
 }

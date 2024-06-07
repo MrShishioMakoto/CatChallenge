@@ -30,14 +30,21 @@ class CatsViewModel: ObservableObject {
     
     init(service: NetworkServiceProtocol = NetworkService()) {
         self.service = service
+        fetchSomeCats()
         fetchFavouriteCats()
     }
     
     //MARK: - API Call
+    func load(currentCat cat: Cat) {
+        if cat.id == catList.last?.id {
+            page += 1
+            self.fetchSomeCats()
+        }
+    }
+    
     func fetchSomeCats() {
         Task {
             do {
-                page += 1
                 let cats = try await service.fetchCats(page: page, limit: limit)
                 self.catList.append(contentsOf: cats)
             } catch let err {

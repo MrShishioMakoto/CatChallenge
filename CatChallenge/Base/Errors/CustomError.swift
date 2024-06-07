@@ -10,7 +10,6 @@ import Foundation
 enum CustomError: LocalizedError, Equatable {
     case generic
     case invalidUrl
-    case typeMismatch
     case failedToDecode
     case invalidStatusCode
     case custom(error: Error)
@@ -21,7 +20,7 @@ enum CustomError: LocalizedError, Equatable {
             return LocalizableKeys.NetworkError.generic
         case .invalidUrl:
             return LocalizableKeys.NetworkError.url
-        case .failedToDecode, .typeMismatch:
+        case .failedToDecode:
             return LocalizableKeys.NetworkError.decode
         case .invalidStatusCode:
             return LocalizableKeys.NetworkError.invalid

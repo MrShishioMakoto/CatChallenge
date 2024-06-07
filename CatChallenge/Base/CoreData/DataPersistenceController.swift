@@ -14,7 +14,7 @@ struct DataPersistenceController {
     
     init() {
         container = NSPersistentContainer(name: "FavouriteCatsData")
-        container.loadPersistentStores { (description, error) in
+        container.loadPersistentStores { (_, error) in
             if let error = error {
                 fatalError("Unable to load persistent stores: \(error)")
             }
@@ -22,10 +22,12 @@ struct DataPersistenceController {
     }
     
     func saveData() {
-        do {
-            try container.viewContext.save()
-        } catch let error {
-            print("Error saving. \(error)")
+        if container.viewContext.hasChanges {
+            do {
+                try container.viewContext.save()
+            } catch let error {
+                print("Error saving. \(error)")
+            }
         }
     }
 }

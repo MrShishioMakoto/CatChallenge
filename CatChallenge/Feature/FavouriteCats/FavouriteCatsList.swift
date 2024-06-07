@@ -21,9 +21,6 @@ struct FavouriteCatsList: View {
                 }
             }
         }
-        .onAppear {
-            viewModel.fetchSomeCats()
-        }
         .navigationTitle(LocalizableKeys.Navigation.navFavCatListTitle)
     }
 }
